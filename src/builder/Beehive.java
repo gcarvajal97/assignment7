@@ -54,8 +54,39 @@ public class Beehive {
         }
 
         public Builder setWarriorCount(int count){
-            this.workerCount = count;
+            this.warriorCount = count;
             return this;
+        }
+
+        public Builder setKillCount(int count) {
+            this.killCount = count;
+            return this;
+        }
+
+        public Builder setHiveKillCount(int count) {
+            this.hiveKillCount = count;
+            return this;
+        }
+
+        public Builder setTickCount(int count) {
+            this.tickCount = count;
+            return this;
+        }
+
+        public Builder setHiveStatus(String status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder setRoomCount(int roomCount) {
+            this.roomCount = roomCount;
+            return this;
+        }
+
+        public Beehive build(){
+            return new Beehive(maxBeeCount, species, workerCount,
+                    warriorCount, killCount, hiveKillCount, tickCount,
+                    status, roomCount);
         }
     }
 }
