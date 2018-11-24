@@ -33,6 +33,11 @@ public class Apiary {
         this.numberOfHives++;
     }
 
+    public void addBeehive(Beehive newHive) {
+        this.hives.put(this.numberOfHives, newHive);
+        this.numberOfHives++;
+    }
+
     private Hashtable<Integer, Beehive> getHives() {
         return hives;
     }
