@@ -50,3 +50,12 @@ tasks.withType(com.github.spotbugs.SpotBugsTask) {
         html.enabled = true
     }
 }
+
+task customFatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'src.Main'
+    }
+    baseName = 'assignDP.gcarvaj3'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
