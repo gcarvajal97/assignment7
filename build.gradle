@@ -4,3 +4,49 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile 'com.io7m.xom:xom:1.2.+'
+    compile 'net.sourceforge.nekohtml:nekohtml:1.9.+'
+    compile files('lib')
+    compile 'org.json:json:20180813'
+    testCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
+}
+
+apply plugin: 'checkstyle'
+
+// Set up checkstyle
+checkstyle {
+    ignoreFailures = true
+    showViolations = false
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        html.enabled = true
+        xml.enabled = false
+    }
+}
+checkstyle {
+    toolVersion = "8.8"
+}
+
+// Set up spotbugs
+spotbugs {
+    toolVersion = '3.1.1'
+    ignoreFailures = true
+}
+
+// Generate HTML for spotbugs
+tasks.withType(com.github.spotbugs.SpotBugsTask) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}

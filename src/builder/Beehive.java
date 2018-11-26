@@ -1,5 +1,9 @@
 package builder;
 
+import mediator.BeeImpl;
+
+import java.util.List;
+
 public class Beehive {
     private int maxBeeCount;
     private String species;
@@ -10,6 +14,8 @@ public class Beehive {
     private int tickCount;
     private String status;
     private int roomCount;
+    private int foodCount = 100;
+    private List<Room> rooms;
 
     public Beehive(int beeCount, String beeSpecies, int workers, int
             warriors, int kills, int hiveKills, int ticksAlive, String
@@ -23,6 +29,10 @@ public class Beehive {
         this.tickCount = ticksAlive;
         this.status = hiveStatus;
         this.roomCount = roomCount;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public static class Builder {
@@ -88,5 +98,36 @@ public class Beehive {
                     warriorCount, killCount, hiveKillCount, tickCount,
                     status, roomCount);
         }
+    }
+
+    public int getFoodCount() {
+        return foodCount;
+    }
+
+    public void setFoodCount(int foodCount) {
+        this.foodCount = foodCount;
+    }
+
+    public class Room {
+        List<BeeImpl> bees;
+        int currentTickCount = 0;
+        String status;
+
+        public Room() {
+            status = "Building";
+        }
+
+        public Room(List<BeeImpl> bees, String status) {
+            this.status = "Built";
+            this.bees = bees;
+        }
+
+        public int getTickCount() {
+            return currentTickCount;
+        }
+    }
+
+    public void killHive(String killReason) {
+        this.status = killReason;
     }
 }

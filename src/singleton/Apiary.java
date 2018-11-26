@@ -12,8 +12,10 @@ public class Apiary {
     private Apiary() {}
 
     public static Apiary getApiary() {
-        if (_apiary == null) _apiary = new Apiary();
-        return _apiary;
+        if (_apiary == null) {
+            _apiary = new Apiary();
+        }
+        return (_apiary);
     }
 
     public void addBeehive(int beeCount, String beeSpecies, int workers,
@@ -44,6 +46,17 @@ public class Apiary {
 
     public Beehive getSpecifiedHive(int key) {
         Hashtable<Integer, Beehive> hives = this.getHives();
-        return hives.get(key);
+        return (hives.get(key));
+    }
+
+    public boolean continueSimulation() {
+        int numberOfLivingHives = 0;
+        for (int i = 0; i < this.numberOfHives; i++) {
+            Beehive currentHive = getSpecifiedHive(i);
+            if (currentHive.getStatus().equalsIgnoreCase("alive")) {
+                numberOfLivingHives++;
+            }
+        }
+        return (numberOfLivingHives > 1);
     }
 }
