@@ -27,8 +27,4 @@ public class BeeMediatorImpl implements BeeMediator {
             }
         }
     }
-
-    public List<Bee> getBees() {
-        return bees;
-    }
 }
