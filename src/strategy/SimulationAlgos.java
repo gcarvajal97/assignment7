@@ -68,9 +68,6 @@ public class SimulationAlgos {
             }
         }
 
-        for (BeeImpl bee : bees) {
-            bee.receive();
-        }
     }
 
     private void useFood(BeeImpl bee) {

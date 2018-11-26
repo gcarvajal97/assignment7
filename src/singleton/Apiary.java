@@ -4,6 +4,9 @@ import builder.Beehive;
 
 import java.util.Hashtable;
 
+/**
+ * Singleton Pattern: Singular apiary to hold all beehives.
+ */
 public class Apiary {
     private static Apiary _apiary = null;
     private Hashtable<Integer, Beehive> hives;
@@ -18,23 +21,28 @@ public class Apiary {
         return (_apiary);
     }
 
-    public void addBeehive(int beeCount, String beeSpecies, int workers,
-                           int warriors, int kills, int hiveKills,
-                           String hiveStatus, int roomCount) {
+    /**
+     * Generates new generic hive
+     */
+    public void addBeehive() {
         Beehive newHive = new Beehive.Builder()
-                .setMaxBeeCount(beeCount)
-                .setSpecies(beeSpecies)
-                .setWorkerCount(workers)
-                .setWarriorCount(warriors)
-                .setKillCount(kills)
-                .setHiveKillCount(hiveKills)
+                .setMaxBeeCount(100)
+                .setSpecies("Gatherer")
+                .setWorkerCount(50)
+                .setWarriorCount(10)
+                .setKillCount(0)
+                .setHiveKillCount(0)
                 .setTickCount(1)
-                .setHiveStatus(hiveStatus)
-                .setRoomCount(roomCount).build();
+                .setHiveStatus("Alive")
+                .setRoomCount(5).build();
         this.hives.put(numberOfHives, newHive);
         this.numberOfHives++;
     }
 
+    /**
+     * Adds pre-built hive to table of hives
+     * @param newHive pre-built hive
+     */
     public void addBeehive(Beehive newHive) {
         this.hives.put(this.numberOfHives, newHive);
         this.numberOfHives++;
@@ -44,11 +52,20 @@ public class Apiary {
         return hives;
     }
 
+    /**
+     * Returns beehive at specified key
+     * @param key which hive to return
+     * @return Beehive
+     */
     public Beehive getSpecifiedHive(int key) {
         Hashtable<Integer, Beehive> hives = this.getHives();
         return (hives.get(key));
     }
 
+    /**
+     * Checks if the current simulation should be continuing
+     * @return boolean
+     */
     public boolean continueSimulation() {
         int numberOfLivingHives = 0;
         for (int i = 0; i < this.numberOfHives; i++) {

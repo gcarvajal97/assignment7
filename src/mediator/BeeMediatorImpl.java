@@ -3,6 +3,9 @@ package mediator;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Concrete Mediator implementation for Bees
+ */
 public class BeeMediatorImpl implements BeeMediator {
     private List<Bee> bees;
 

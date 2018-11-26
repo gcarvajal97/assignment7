@@ -1,5 +1,8 @@
 package mediator;
 
+/**
+ * Concrete Mediator User implementation for Bees
+ */
 public class BeeImpl extends Bee {
 
     public BeeImpl(BeeMediator med, String name) {
@@ -12,7 +15,7 @@ public class BeeImpl extends Bee {
         mediator.sendMessage(action, this);
     }
     @Override
-    public void receive() {
+    public void receive(String msg) {
         System.out.println(this.type + ": Received action");
     }
 

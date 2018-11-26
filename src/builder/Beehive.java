@@ -4,6 +4,9 @@ import mediator.BeeImpl;
 
 import java.util.List;
 
+/**
+    Beehive Object: Utilizes Builder pattern
+ */
 public class Beehive {
     private int maxBeeCount;
     private String species;
@@ -17,7 +20,19 @@ public class Beehive {
     private int foodCount = 100;
     private List<Room> rooms;
 
-    public Beehive(int beeCount, String beeSpecies, int workers, int
+    /**
+     * Private constructor since utilizing a builder
+     * @param beeCount number of bees that can be in a room
+     * @param beeSpecies overall species of bee
+     * @param workers number of worker bees
+     * @param warriors number of warrior bees
+     * @param kills number of killed bees
+     * @param hiveKills number of hives killed
+     * @param ticksAlive how long the hive has been alive
+     * @param hiveStatus current status of the hive
+     * @param roomCount how many rooms are in the hive
+     */
+    private Beehive(int beeCount, String beeSpecies, int workers, int
             warriors, int kills, int hiveKills, int ticksAlive, String
             hiveStatus, int roomCount) {
         this.maxBeeCount = beeCount;

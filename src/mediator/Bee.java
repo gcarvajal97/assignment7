@@ -1,5 +1,8 @@
 package mediator;
 
+/**
+ * Abstract Class for Mediator Pattern: Bees
+ */
 public abstract class Bee {
     protected BeeMediator mediator;
     protected String type;
@@ -13,5 +16,5 @@ public abstract class Bee {
 
     public abstract void send(String msg);
 
-    public abstract void receive();
+    public abstract void receive(String msg);
 }
