@@ -44,8 +44,10 @@ public class Apiary {
                 .setTickCount(1)
                 .setHiveStatus("Alive")
                 .setRoomCount(5).build();
+        newHive.setFoodCount(100);
         this.hives.put(numberOfHives, newHive);
         this.numberOfHives++;
+        
     }
 
     /**

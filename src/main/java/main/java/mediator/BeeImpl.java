@@ -7,6 +7,7 @@ public class BeeImpl extends Bee {
 
     public BeeImpl(BeeMediator med, String name) {
         super(med, name);
+        System.out.println("Creating new " + name + " bee");
     }
 
     @Override
@@ -29,5 +30,9 @@ public class BeeImpl extends Bee {
 
     public String getBeeType() {
         return this.type;
+    }
+    
+    public BeeMediator getMediator() {
+        return this.mediator;
     }
 }

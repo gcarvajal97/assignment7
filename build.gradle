@@ -43,7 +43,7 @@ checkstyle {
 
 // Set up spotbugs
 spotbugs {
-    toolVersion = '3.1.6'
+    toolVersion = '3.1.9'
     ignoreFailures = true
 }
 
@@ -52,5 +52,15 @@ tasks.withType(com.github.spotbugs.SpotBugsTask) {
     reports {
         xml.enabled = false
         html.enabled = true
+    }
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "main.java.main.java.Main"
+    }
+ 
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }

@@ -3,6 +3,9 @@
 *.iml
 out/*
 *.DS_Store*
+.classpath
+.project
+.settings
 
 
 //Gradle files

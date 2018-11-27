@@ -11,6 +11,10 @@ public class SimulationAlgos {
     private int tick = 0;
     private ArrayList<BeeImpl> bees;
     private Beehive hive;
+    private String lock = "unlocked";
+    private int kill;
+    @SuppressWarnings("unchecked")
+    ArrayList<BeeImpl> newBeeList ;
 
     /**
      * Default Constructor.
@@ -20,6 +24,11 @@ public class SimulationAlgos {
     public SimulationAlgos(ArrayList<BeeImpl> bees, Beehive hive) {
         this.bees = bees;
         this.hive = hive;
+        this.newBeeList = new ArrayList<>();
+        for(BeeImpl bee : bees) {
+            this.newBeeList.add(bee);
+        }
+        
     }
 
     /**
@@ -50,51 +59,68 @@ public class SimulationAlgos {
     /**
      * Performs different tick action based on the bee type.
      */
-    private void performTickAction() {
+    public void performTickAction() {
+        System.out.println("Performing actions for tick number: " + this.getTick());
+        this.lock = "locked";
         for (BeeImpl bee : this.bees) {
-
+            this.kill = 0;
             if (bee.getBeeType().equalsIgnoreCase("worker")) {
                 if (!bee.getStatus().equalsIgnoreCase("free")) {
                     if(tick % 100 == 0) {
-                        bee.setStatus("free");
                         useFood(bee);
+                        if (this.kill == 0) {
+                            bee.setStatus("free");
+                        }
                     }
                 }
                 else if(bee.getStatus().equalsIgnoreCase("rest")) {
                     useFood(bee);
                 }
                 else {
-                    bee.setStatus("Working");
                     useFood(bee);
+                    if (this.kill == 0) {
+                        bee.setStatus("Working");
+                    }
                 }
             }
 
             if (bee.getBeeType().equalsIgnoreCase("queen")) {
-                bee.send("Laying egg");
                 useFood(bee);
+                if (this.kill == 0) {
+                    bee.send("Laying egg");
+                }
+                
             }
 
             if (bee.getBeeType().equalsIgnoreCase("drone")) {
-                bee.send("Looking for bees to kill");
+                useFood(bee);
+                if (this.kill == 0) {
+                    bee.send("Looking for bees to kill");
+                }
             }
 
             if (bee.getBeeType().equalsIgnoreCase("forager")) {
-                bee.send("Gathering food");
-                this.hive.setFoodCount(this.hive.getFoodCount() + 10);
                 useFood(bee);
+                if (this.kill == 0) {
+                    bee.send("Gathering food");
+                    hive.setFoodCount(hive.getFoodCount() + 10);
+                }
             }
         }
+        this.lock = "unlocked";
+        BeeImpl beeToKill = (this.newBeeList.size() > 0) ? this.newBeeList.get(0) : null;
+        killBee(beeToKill);
 
     }
 
     private void useFood(BeeImpl bee) {
-        if (this.hive.getFoodCount() == 0) {
+        if (hive.getFoodCount() == 0) {
             killBee(bee);
         }
         else {
-            this.hive.setFoodCount(this.hive.getFoodCount() - 1);
+            hive.setFoodCount(hive.getFoodCount() - 1);
             System.out.println("Current food stores: "
-                    + this.hive.getFoodCount());
+                    + hive.getFoodCount());
         }
     }
 
@@ -103,11 +129,21 @@ public class SimulationAlgos {
      * @param bee Bee to remove
      */
     private void killBee(BeeImpl bee) {
-        System.out.println("Not enough food to sustain bee, so death...");
-        this.bees.remove(bee);
-        if (bee.getBeeType().equalsIgnoreCase("queen")) {
-            System.out.println("The queen has died.");
-            this.hive.killHive("Dead: Queen died of starvation");
+        if (bee == null) {
+            System.out.println("No bees died this tick");
+        }
+        else {
+            System.out.println("Not enough food to sustain bee, so death...");
+            this.newBeeList.remove(bee);
+            this.hive.increaseKillCount();
+            this.kill = 1;
+            if (bee.getBeeType().equalsIgnoreCase("queen")) {
+                System.out.println("The queen has died.");
+                this.hive.killHive("Dead: Queen died of starvation");
+            }
+            if (this.lock.equals("unlocked")) {
+                this.bees = this.newBeeList;
+            }
         }
     }
 }

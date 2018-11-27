@@ -120,6 +120,7 @@ public class Beehive {
          * @return new beehive object
          */
         public Beehive build() {
+            System.out.println("Creating new beehive of type: " + species);
             return new Beehive(maxBeeCount, species, workerCount,
                     warriorCount, killCount, hiveKillCount, tickCount,
                     status, roomCount);
@@ -188,5 +189,29 @@ public class Beehive {
      */
     public void killHive(String killReason) {
         this.status = killReason;
+    }
+    
+    /**
+     * Gets current room number.
+     * @return room count
+     */
+    public int getRoomCount() { 
+        return this.roomCount;
+    }
+    
+    /**
+     * Gets current kill count.
+     * @return kill count
+     */
+    public int getKillCount() {
+        return this.killCount;
+    }
+    
+    /**
+     * Increments current kill count.
+     */
+    
+    public void increaseKillCount() {
+        this.killCount++;
     }
 }
