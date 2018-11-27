@@ -57,7 +57,7 @@ tasks.withType(com.github.spotbugs.SpotBugsTask) {
 
 jar {
     manifest {
-        attributes "Main-Class": "main.java.main.java.Main"
+        attributes "Main-Class": "main.java.Main"
     }
  
     from {
