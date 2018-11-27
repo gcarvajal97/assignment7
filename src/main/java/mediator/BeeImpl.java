@@ -1,7 +1,7 @@
-package mediator;
+package main.java.mediator;
 
 /**
- * Concrete Mediator User implementation for Bees
+ * Concrete Mediator User implementation for Bees.
  */
 public class BeeImpl extends Bee {
 

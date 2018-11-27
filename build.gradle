@@ -4,16 +4,23 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
+
 plugins {
     id 'com.github.spotbugs' version '1.6.5'
 }
 
 apply plugin: 'application'
 apply plugin: 'java'
+mainClassName = 'main.java.Main'
 
 repositories {
     mavenCentral()
     jcenter()
+}
+
+dependencies {
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
+    compile 'junit:junit:4.12'
 }
 
 apply plugin: 'checkstyle'
@@ -36,7 +43,7 @@ checkstyle {
 
 // Set up spotbugs
 spotbugs {
-    toolVersion = '3.1.1'
+    toolVersion = '3.1.6'
     ignoreFailures = true
 }
 

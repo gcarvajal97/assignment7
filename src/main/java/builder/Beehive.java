@@ -1,11 +1,11 @@
-package builder;
+package main.java.builder;
 
-import mediator.BeeImpl;
+import java.util.ArrayList;
+import main.java.mediator.BeeImpl;
 
-import java.util.List;
 
 /**
-    Beehive Object: Utilizes Builder pattern
+    Beehive Object: Utilizes Builder pattern.
  */
 public class Beehive {
     private int maxBeeCount;
@@ -18,10 +18,10 @@ public class Beehive {
     private String status;
     private int roomCount;
     private int foodCount = 100;
-    private List<Room> rooms;
+    private ArrayList<Room> rooms = new ArrayList<>();
 
     /**
-     * Private constructor since utilizing a builder
+     * Private constructor since utilizing a main.java.builder.
      * @param beeCount number of bees that can be in a room
      * @param beeSpecies overall species of bee
      * @param workers number of worker bees
@@ -46,10 +46,17 @@ public class Beehive {
         this.roomCount = roomCount;
     }
 
+    /**
+     * Gets current hive status.
+     * @return hive status
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     * Inner class to implement builder pattern.
+     */
     public static class Builder {
         private int maxBeeCount;
         private String species;
@@ -63,7 +70,7 @@ public class Beehive {
 
         public Builder(){}
 
-        public Builder setMaxBeeCount(int maxCount){
+        public Builder setMaxBeeCount(int maxCount) {
             this.maxBeeCount = maxCount;
             return this;
         }
@@ -78,7 +85,7 @@ public class Beehive {
             return this;
         }
 
-        public Builder setWarriorCount(int count){
+        public Builder setWarriorCount(int count) {
             this.warriorCount = count;
             return this;
         }
@@ -108,23 +115,56 @@ public class Beehive {
             return this;
         }
 
-        public Beehive build(){
+        /**
+         * Method to build the beehive using the builder pattern.
+         * @return new beehive object
+         */
+        public Beehive build() {
             return new Beehive(maxBeeCount, species, workerCount,
                     warriorCount, killCount, hiveKillCount, tickCount,
                     status, roomCount);
         }
     }
 
+    /**
+     * Builds generic rooms.
+     * @param roomCount how many rooms to build
+     * @param bees list of bees that live there
+     */
+    public void buildRoom(int roomCount, ArrayList<BeeImpl> bees) {
+        for (int i = 0; i < roomCount; i++) {
+            this.rooms.add(new Room(bees));
+        }
+    }
+
+    /**
+     * Builds empty room.
+     */
+    public void buildRoom() {
+        this.rooms.add(new Room());
+    }
+
+    /**
+     * Gets current food stores.
+     * @return food count
+     */
     public int getFoodCount() {
         return foodCount;
     }
 
+    /**
+     * Sets current food stores
+     * @param foodCount What value to set food stores to.
+     */
     public void setFoodCount(int foodCount) {
         this.foodCount = foodCount;
     }
 
-    public class Room {
-        List<BeeImpl> bees;
+    /**
+     * Inner class to represent a hive room.
+     */
+    public static class Room {
+        ArrayList<BeeImpl> bees;
         int currentTickCount = 0;
         String status;
 
@@ -132,7 +172,7 @@ public class Beehive {
             status = "Building";
         }
 
-        public Room(List<BeeImpl> bees, String status) {
+        public Room(ArrayList<BeeImpl> bees) {
             this.status = "Built";
             this.bees = bees;
         }
@@ -142,6 +182,10 @@ public class Beehive {
         }
     }
 
+    /**
+     * Kills current hive.
+     * @param killReason Why hive died.
+     */
     public void killHive(String killReason) {
         this.status = killReason;
     }

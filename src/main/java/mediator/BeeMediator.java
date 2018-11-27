@@ -1,7 +1,7 @@
-package mediator;
+package main.java.mediator;
 
 /**
- * Mediator interface for Bees
+ * Mediator interface for Bees.
  */
 public interface BeeMediator {
 

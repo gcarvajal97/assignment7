@@ -1,28 +1,37 @@
-package singleton;
-
-import builder.Beehive;
+package main.java.singleton;
 
 import java.util.Hashtable;
+import main.java.builder.Beehive;
 
 /**
  * Singleton Pattern: Singular apiary to hold all beehives.
  */
 public class Apiary {
     private static Apiary _apiary = null;
-    private Hashtable<Integer, Beehive> hives;
+    private Hashtable<Integer, Beehive> hives = new Hashtable<>();
     private int numberOfHives = 0;
 
+    /**
+     * Default Constructor.
+     */
     private Apiary() {}
 
+    /**
+     * Creates singleton instance of apiary. If one is present, returns that
+     * instead.
+     * @return Apiary
+     */
     public static Apiary getApiary() {
         if (_apiary == null) {
+            System.out.println("No apiary found, creating a new one");
             _apiary = new Apiary();
         }
+        System.out.println("Existing apiary found");
         return (_apiary);
     }
 
     /**
-     * Generates new generic hive
+     * Generates new generic hive.
      */
     public void addBeehive() {
         Beehive newHive = new Beehive.Builder()
@@ -40,7 +49,7 @@ public class Apiary {
     }
 
     /**
-     * Adds pre-built hive to table of hives
+     * Adds pre-built hive to table of hives.
      * @param newHive pre-built hive
      */
     public void addBeehive(Beehive newHive) {
@@ -53,7 +62,7 @@ public class Apiary {
     }
 
     /**
-     * Returns beehive at specified key
+     * Returns beehive at specified key.
      * @param key which hive to return
      * @return Beehive
      */
@@ -63,7 +72,7 @@ public class Apiary {
     }
 
     /**
-     * Checks if the current simulation should be continuing
+     * Checks if the current simulation should be continuing.
      * @return boolean
      */
     public boolean continueSimulation() {

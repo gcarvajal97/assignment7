@@ -1,7 +1,7 @@
-package mediator;
+package main.java.mediator;
 
 /**
- * Abstract Class for Mediator Pattern: Bees
+ * Abstract Class for Mediator Pattern: Bees.
  */
 public abstract class Bee {
     protected BeeMediator mediator;
