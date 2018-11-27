@@ -1,7 +1,7 @@
-package main.java.singleton;
+package main.java.main.java.singleton;
 
 import java.util.Hashtable;
-import main.java.builder.Beehive;
+import main.java.main.java.builder.Beehive;
 
 /**
  * Singleton Pattern: Singular apiary to hold all beehives.

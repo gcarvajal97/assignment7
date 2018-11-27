@@ -1,7 +1,7 @@
-package main.java.builder;
+package main.java.main.java.builder;
 
 import java.util.ArrayList;
-import main.java.mediator.BeeImpl;
+import main.java.main.java.mediator.BeeImpl;
 
 
 /**
@@ -154,7 +154,7 @@ public class Beehive {
     }
 
     /**
-     * Sets current food stores
+     * Sets current food stores.
      * @param foodCount What value to set food stores to.
      */
     public void setFoodCount(int foodCount) {
@@ -178,6 +178,10 @@ public class Beehive {
             this.bees = bees;
         }
 
+        /**
+         * Gets current tick count for room building.
+         * @return tick count
+         */
         public int getTickCount() {
             return currentTickCount;
         }
@@ -210,7 +214,6 @@ public class Beehive {
     /**
      * Increments current kill count.
      */
-    
     public void increaseKillCount() {
         this.killCount++;
     }

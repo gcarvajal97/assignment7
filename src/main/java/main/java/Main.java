@@ -1,13 +1,13 @@
-package main.java;
+package main.java.main.java;
 
 import java.util.ArrayList;
 
-import main.java.builder.Beehive;
-import main.java.mediator.BeeImpl;
-import main.java.mediator.BeeMediator;
-import main.java.mediator.BeeMediatorImpl;
-import main.java.singleton.Apiary;
-import main.java.strategy.SimulationAlgos;
+import main.java.main.java.builder.Beehive;
+import main.java.main.java.mediator.BeeImpl;
+import main.java.main.java.mediator.BeeMediator;
+import main.java.main.java.mediator.BeeMediatorImpl;
+import main.java.main.java.singleton.Apiary;
+import main.java.main.java.strategy.SimulationAlgos;
 
 
 /**

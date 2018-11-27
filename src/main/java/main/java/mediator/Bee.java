@@ -1,4 +1,4 @@
-package main.java.mediator;
+package main.java.main.java.mediator;
 
 /**
  * Abstract Class for Mediator Pattern: Bees.
@@ -8,7 +8,12 @@ public abstract class Bee {
     protected String type;
     protected String status;
 
-    public Bee(BeeMediator med, String beeType){
+    /**
+     * Default constructor.
+     * @param med mediator
+     * @param beeType type of bee
+     */
+    public Bee(BeeMediator med, String beeType) {
         this.mediator = med;
         this.type = beeType;
         this.status = "Free";

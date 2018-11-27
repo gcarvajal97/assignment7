@@ -1,4 +1,4 @@
-package main.java.mediator;
+package main.java.main.java.mediator;
 
 /**
  * Mediator interface for Bees.

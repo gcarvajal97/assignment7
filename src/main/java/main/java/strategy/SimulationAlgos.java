@@ -1,8 +1,8 @@
-package main.java.strategy;
+package main.java.main.java.strategy;
 
 import java.util.ArrayList;
-import main.java.builder.Beehive;
-import main.java.mediator.BeeImpl;
+import main.java.main.java.builder.Beehive;
+import main.java.main.java.mediator.BeeImpl;
 
 /**
  * Strategy Pattern: Class stores all methods involved with actions per tick.
@@ -13,8 +13,7 @@ public class SimulationAlgos {
     private Beehive hive;
     private String lock = "unlocked";
     private int kill;
-    @SuppressWarnings("unchecked")
-    ArrayList<BeeImpl> newBeeList ;
+    ArrayList<BeeImpl> newBeeList;
 
     /**
      * Default Constructor.
@@ -25,10 +24,7 @@ public class SimulationAlgos {
         this.bees = bees;
         this.hive = hive;
         this.newBeeList = new ArrayList<>();
-        for(BeeImpl bee : bees) {
-            this.newBeeList.add(bee);
-        }
-        
+        this.newBeeList.addAll(bees);
     }
 
     /**
@@ -44,7 +40,7 @@ public class SimulationAlgos {
      * @param tick number of increments
      */
     public void setTick(int tick) {
-        for(int i = 0; i < tick; i++) {
+        for (int i = 0; i < tick; i++) {
             this.tick++;
         }
     }
@@ -60,23 +56,23 @@ public class SimulationAlgos {
      * Performs different tick action based on the bee type.
      */
     public void performTickAction() {
-        System.out.println("Performing actions for tick number: " + this.getTick());
+        System.out.println(
+                "Performing actions for tick number: " + this.getTick());
         this.lock = "locked";
         for (BeeImpl bee : this.bees) {
             this.kill = 0;
             if (bee.getBeeType().equalsIgnoreCase("worker")) {
                 if (!bee.getStatus().equalsIgnoreCase("free")) {
-                    if(tick % 100 == 0) {
+                    if (tick % 100 == 0) {
                         useFood(bee);
                         if (this.kill == 0) {
                             bee.setStatus("free");
                         }
                     }
-                }
-                else if(bee.getStatus().equalsIgnoreCase("rest")) {
+                } else if (
+                        bee.getStatus().equalsIgnoreCase("rest")) {
                     useFood(bee);
-                }
-                else {
+                } else {
                     useFood(bee);
                     if (this.kill == 0) {
                         bee.setStatus("Working");
@@ -108,7 +104,8 @@ public class SimulationAlgos {
             }
         }
         this.lock = "unlocked";
-        BeeImpl beeToKill = (this.newBeeList.size() > 0) ? this.newBeeList.get(0) : null;
+        BeeImpl beeToKill = (
+                this.newBeeList.size() > 0) ? this.newBeeList.get(0) : null;
         killBee(beeToKill);
 
     }
@@ -116,8 +113,7 @@ public class SimulationAlgos {
     private void useFood(BeeImpl bee) {
         if (hive.getFoodCount() == 0) {
             killBee(bee);
-        }
-        else {
+        } else {
             hive.setFoodCount(hive.getFoodCount() - 1);
             System.out.println("Current food stores: "
                     + hive.getFoodCount());
@@ -131,8 +127,7 @@ public class SimulationAlgos {
     private void killBee(BeeImpl bee) {
         if (bee == null) {
             System.out.println("No bees died this tick");
-        }
-        else {
+        } else {
             System.out.println("Not enough food to sustain bee, so death...");
             this.newBeeList.remove(bee);
             this.hive.increaseKillCount();

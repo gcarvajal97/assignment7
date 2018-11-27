@@ -1,4 +1,4 @@
-package main.java.mediator;
+package main.java.main.java.mediator;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ public class BeeMediatorImpl implements BeeMediator {
     /**
      * Default constructor.
      */
-    public BeeMediatorImpl(){
+    public BeeMediatorImpl() {
         this.bees = new ArrayList<>();
     }
 
@@ -25,7 +25,7 @@ public class BeeMediatorImpl implements BeeMediator {
     }
 
     /**
-     * Sends action that a bee took to all other bees
+     * Sends action that a bee took to all other bees.
      * @param msg action be took
      * @param bee which bee sent the message
      */

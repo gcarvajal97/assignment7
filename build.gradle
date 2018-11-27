@@ -11,7 +11,7 @@ plugins {
 
 apply plugin: 'application'
 apply plugin: 'java'
-mainClassName = 'main.java.Main'
+mainClassName = 'main.java.main.java.Main'
 
 repositories {
     mavenCentral()
@@ -20,6 +20,7 @@ repositories {
 
 dependencies {
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
+    compile 'junit:junit:4.12'
     compile 'junit:junit:4.12'
 }
 

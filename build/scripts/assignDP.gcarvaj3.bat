@@ -66,7 +66,7 @@ set CMD_LINE_ARGS=%*
 set CLASSPATH=%APP_HOME%\lib\assignDP.gcarvaj3.jar;%APP_HOME%\lib\junit-4.12.jar;%APP_HOME%\lib\hamcrest-core-1.3.jar
 
 @rem Execute assignDP.gcarvaj3
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %ASSIGN_DP_GCARVAJ3_OPTS%  -classpath "%CLASSPATH%" main.java.Main %CMD_LINE_ARGS%
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %ASSIGN_DP_GCARVAJ3_OPTS%  -classpath "%CLASSPATH%" main.java.main.java.Main %CMD_LINE_ARGS%
 
 :end
 @rem End local scope for the variables with windows NT shell
